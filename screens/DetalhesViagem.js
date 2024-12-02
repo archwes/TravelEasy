@@ -64,7 +64,10 @@ export default function DetalhesViagem() {
         </Text>
         <TouchableOpacity style={styles.editButton}>
           <Icon name="pencil-outline" size={20} color="#FFF" />
-          <Text style={styles.editButtonText}>Editar</Text>
+          <Text style={styles.editButtonText}onPress={() =>
+            navigation.navigate('EditarDespesaDia', { dia: index + 1, viagemId: detalhesViagem.id })
+                }
+          >Editar</Text>
         </TouchableOpacity>
       </View>
     );
