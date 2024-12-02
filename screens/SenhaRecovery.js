@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     width: '100%',
-    marginTop: 20, // Ajuste do espaçamento
+    marginTop: 20,
     marginBottom: 20,
   },
   buttonText: {

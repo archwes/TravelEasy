@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
-import { auth, db } from '../firebaseConfig'; // Ajuste o caminho corretamente
+import { auth, db } from '../firebaseConfig';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Registro() {
@@ -70,9 +70,8 @@ export default function Registro() {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
 
-    // Redireciona para a tela de login se o registro foi bem-sucedido
     if (mensagem === 'Usuário registrado com sucesso!') {
-      navigation.navigate('Login'); // Ajuste 'Login' para o nome correto da rota de login
+      navigation.navigate('Login');
     }
   };
 

@@ -136,7 +136,6 @@ export default function AdicionarViagem() {
       </View>
       <Text style={styles.title}>Busque uma cidade</Text>
 
-      {/* Campo de cidade */}
       <View style={styles.searchContainer}>
         <View style={styles.inputContainer}>
           <Icon name="location-outline" size={24} color="#2C2C54" style={styles.inputIcon} />
@@ -171,7 +170,6 @@ export default function AdicionarViagem() {
         )}
       </View>
 
-      {/* Campo de orçamento */}
       <View style={styles.inputContainer}>
         <Text style={styles.currencySymbol}>R$</Text>
         <TextInput
@@ -190,7 +188,6 @@ export default function AdicionarViagem() {
         />
       </View>
 
-      {/* Datas de check-in e check-out */}
       <View style={styles.datesRow}>
         <View style={[styles.inputContainer, styles.dateContainer]}>
           <Icon name="calendar-outline" size={24} color="#2C2C54" style={styles.inputIcon} />
@@ -210,7 +207,6 @@ export default function AdicionarViagem() {
         </View>
       </View>
 
-      {/* DateTimePickerModal */}
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"

@@ -10,9 +10,6 @@ import ListaViagens from './screens/ListaViagens';
 import AdicionarViagem from './screens/AdicionarViagem';
 import DetalhesViagem from './screens/DetalhesViagem';
 import EditarViagem from './screens/EditarViagem';
-import EditarDia from './screens/EditarDia';
-
-
 
 const Stack = createStackNavigator();
 
@@ -28,7 +25,6 @@ export default function App() {
         <Stack.Screen name="ListaViagens" component={ListaViagens} />
         <Stack.Screen name="DetalhesViagem" component={DetalhesViagem} />
         <Stack.Screen name="EditarViagem" component={EditarViagem} />
-        <Stack.Screen name="EditarDia" component={EditarDia} />
       </Stack.Navigator>
     </NavigationContainer>
   );

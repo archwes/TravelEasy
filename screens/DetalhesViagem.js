@@ -15,7 +15,7 @@ import { db } from '../firebaseConfig';
 export default function DetalhesViagem() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { viagem } = route.params; // Recebe os dados da viagem selecionada
+  const { viagem } = route.params;
   const [dias, setDias] = useState([]);
   const [detalhesViagem, setDetalhesViagem] = useState(viagem);
 
@@ -44,7 +44,6 @@ export default function DetalhesViagem() {
         }
       });
 
-      // Cleanup da escuta
       return unsubscribe;
     } catch (error) {
       console.error('Erro ao carregar viagem:', error);
@@ -54,7 +53,7 @@ export default function DetalhesViagem() {
 
   useEffect(() => {
     const unsubscribe = carregarViagemAtualizada();
-    return () => unsubscribe(); // Limpeza do unsubscribe ao desmontar o componente
+    return () => unsubscribe();
   }, [viagem]);
 
   const renderDia = ({ item, index }) => {
@@ -73,14 +72,11 @@ export default function DetalhesViagem() {
 
   return (
     <View style={styles.container}>
-      {/* Cabeçalho com botão de Go Back e Editar */}
       <View style={styles.header}>
-        {/* Botão de Go Back */}
         <TouchableOpacity style={styles.iconButton} onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={24} color="#2C2C54" />
         </TouchableOpacity>
 
-        {/* Botão de Editar Viagem */}
         <TouchableOpacity
           style={styles.iconButton}
           onPress={() =>

@@ -10,7 +10,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig'; // Ajuste o caminho conforme necessário
+import { auth } from '../firebaseConfig';
 
 export default function Login() {
   const navigation = useNavigation();
@@ -33,7 +33,7 @@ export default function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
-      navigation.navigate('SelecaoViagem'); // Substitua pelo nome correto da tela
+      navigation.navigate('SelecaoViagem');
     } catch (error) {
       setMensagem('Erro ao fazer login: ' + error.message);
       setModalVisible(true);

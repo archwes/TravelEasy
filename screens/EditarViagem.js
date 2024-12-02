@@ -16,7 +16,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 export default function EditarViagem() {
   const navigation = useNavigation();
   const route = useRoute();
-  const viagem = route.params?.viagem || null; // Verifica se existe uma viagem
+  const viagem = route.params?.viagem || null;
 
   const [local, setLocal] = useState(viagem?.local || '');
   const [orcamento, setOrcamento] = useState(
@@ -31,7 +31,6 @@ export default function EditarViagem() {
 
   useEffect(() => {
     if (!viagem) {
-      // Caso seja uma nova viagem, defina datas padrão, se necessário
       setStartDate(new Date());
       setEndDate(new Date());
     }
@@ -80,12 +79,10 @@ export default function EditarViagem() {
       };
 
       if (viagem) {
-        // Atualizar viagem existente
         const viagemRef = doc(db, 'viagens', viagem.id);
         await updateDoc(viagemRef, { local, orcamento: orcamentoFormatado, periodo });
         Alert.alert('Sucesso', 'Viagem atualizada com sucesso!');
       } else {
-        // Criar nova viagem
         const user = auth.currentUser;
         if (!user) {
           Alert.alert('Erro', 'Usuário não autenticado.');
@@ -105,7 +102,7 @@ export default function EditarViagem() {
         Alert.alert('Sucesso', 'Nova viagem criada com sucesso!');
       }
 
-      navigation.goBack(); // Retorna para a tela anterior
+      navigation.goBack();
     } catch (error) {
       console.error('Erro ao salvar viagem:', error);
       Alert.alert('Erro', 'Não foi possível salvar a viagem.');
@@ -125,15 +122,14 @@ export default function EditarViagem() {
       <View style={styles.inputContainer}>
         <Icon name="location-outline" size={24} color="#2C2C54" style={styles.inputIcon} />
         <TextInput
-          style={[styles.input, viagem ? { color: '#A9A9A9' } : null]} // Desabilita se estiver editando
+          style={[styles.input, viagem ? { color: '#A9A9A9' } : null]}
           value={local}
           onChangeText={setLocal}
-          editable={!viagem} // Somente edição para nova viagem
+          editable={!viagem}
           placeholder="Local"
         />
       </View>
 
-      {/* Campo de orçamento */}
       <View style={styles.inputContainer}>
         <Text style={styles.currencySymbol}>R$</Text>
         <TextInput
@@ -150,7 +146,6 @@ export default function EditarViagem() {
         />
       </View>
 
-      {/* Datas de check-in e check-out */}
       <View style={styles.datesRow}>
         <TouchableOpacity style={[styles.inputContainer, styles.dateContainer]} onPress={() => showDatePicker('start')}>
           <Icon name="calendar-outline" size={24} color="#2C2C54" style={styles.inputIcon} />
@@ -166,7 +161,6 @@ export default function EditarViagem() {
         </TouchableOpacity>
       </View>
 
-      {/* DateTimePickerModal */}
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"

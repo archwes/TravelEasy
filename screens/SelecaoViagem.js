@@ -30,13 +30,12 @@ export default function SelecaoViagem() {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        // Se houver viagens, redirecionar para ListaViagens
         navigation.reset({
           index: 0,
           routes: [{ name: 'ListaViagens' }],
         });
       } else {
-        setLoading(false); // Continua na tela de Adicionar Viagem
+        setLoading(false);
       }
     } catch (error) {
       console.error('Erro ao verificar viagens:', error);
@@ -60,7 +59,7 @@ export default function SelecaoViagem() {
     if (user && user.displayName) {
       setNomeUsuario(user.displayName);
     } else {
-      setNomeUsuario('Usuário'); // Fallback caso não tenha nome
+      setNomeUsuario('Usuário');
     }
     definirSaudacao();
     checkExistingViagens();

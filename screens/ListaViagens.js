@@ -18,7 +18,6 @@ export default function ListaViagens() {
   const navigation = useNavigation();
   const [viagens, setViagens] = useState([]);
 
-  // Função para buscar viagens do usuário em tempo real
   const fetchViagens = () => {
     try {
       const user = auth.currentUser;
@@ -35,7 +34,6 @@ export default function ListaViagens() {
       const viagensRef = collection(db, 'viagens');
       const q = query(viagensRef, where('uid', '==', user.uid));
 
-      // Usando onSnapshot para escutar as mudanças em tempo real
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const viagensData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -45,7 +43,6 @@ export default function ListaViagens() {
         setViagens(viagensData || []);
       });
 
-      // Cleanup do unsubscribe
       return unsubscribe;
     } catch (error) {
       console.error('Erro ao buscar viagens:', error);
@@ -54,14 +51,12 @@ export default function ListaViagens() {
     }
   };
 
-  // Função para formatar o orçamento no padrão brasileiro
   const formatarOrcamento = (valor) => {
     return parseFloat(valor)
       .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
       .replace('R$', 'R$ ');
   };
 
-  // Função para realizar o logout
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -75,17 +70,14 @@ export default function ListaViagens() {
     }
   };
 
-  // UseEffect para carregar as viagens na tela
   useEffect(() => {
     const unsubscribe = fetchViagens();
 
-    // Limpeza do unsubscribe ao desmontar o componente
     return () => unsubscribe && unsubscribe();
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Cabeçalho com botão de desautenticação e botão de adicionar viagem */}
       <View style={styles.header}>
         {/* Botão de logout */}
         <TouchableOpacity
@@ -95,10 +87,8 @@ export default function ListaViagens() {
           <Icon name="run-fast" size={24} color="#2C2C54" style={styles.iconFlipped} />
         </TouchableOpacity>
 
-        {/* Título */}
         <Text style={styles.title}>Minhas Viagens</Text>
 
-        {/* Botão de adicionar viagem */}
         <TouchableOpacity
           style={styles.iconButton}
           onPress={() => navigation.navigate('AdicionarViagem', { viagem: null })}
@@ -107,7 +97,6 @@ export default function ListaViagens() {
         </TouchableOpacity>
       </View>
 
-      {/* Lista de Viagens */}
       <FlatList
         data={viagens || []}
         keyExtractor={(item, index) => index.toString()}
@@ -150,7 +139,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   iconFlipped: {
-    transform: [{ scaleX: -1 }], // Espelha o ícone para a esquerda
+    transform: [{ scaleX: -1 }],
   },
   title: {
     fontSize: 24,
